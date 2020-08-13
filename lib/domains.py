@@ -113,8 +113,8 @@ class DomainData(object):
         """Get a list of the opreating systems reported for the given domain's computers."""
         query = """
         MATCH (c:Computer {domain:'%s'})
-        WHERE NOT (c.OperatingSystem = "" or c.OperatingSystem is Null)
-        RETURN DISTINCT(c.OperatingSystem) as OperartingSystems,COUNT(c.OperatingSystem) as Total
+        WHERE NOT (c.operatingsystem = "" or c.operatingsystem is Null)
+        RETURN DISTINCT(c.operatingsystem) as OperartingSystems,COUNT(c.operatingsystem) as Total
         ORDER BY Total DESC
         """ % domain
 
@@ -146,7 +146,7 @@ class DomainData(object):
         """Finds Active Directory OUs that block inheritance of group policies."""
         query = """
         MATCH (o:OU {domain:'%s'})
-        WHERE o.blocksInheritance = True
+        WHERE o.blocksinheritance = True
         RETURN o.name
         """ % domain
 

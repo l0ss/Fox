@@ -119,7 +119,7 @@ def fox(domain, pass_age):
             print(green("[+] Calculating paths to Domain Admin and averages -- this can take \
 some time..."))
             total_paths = domain_metrics.get_all_da_paths(domain)
-            avg_path = domain_metrics.avg_path_length(domain)
+            #avg_path = domain_metrics.avg_path_length(domain)
             try:
                 percentage_users_path_to_da = 100.0 * (total_paths/total_users)
             except:
@@ -167,7 +167,7 @@ some time..."))
             if len(gpo_list) > 0:
                 print(green("Number of GPOs:\t%s" % len(gpo_list)))
             if blocker_ous:
-                print(green("OUs blockiung inheritance:"))
+                print(green("OUs blocking inheritance:"))
                 for ou in blocker_ous:
                     print(yellow("\t%s" % ou))
             if operating_systems:
@@ -250,7 +250,7 @@ some time..."))
 
             # Report on paths
             print(green("Total paths:\t\t\t\t\t%s" % total_paths))
-            print(green("Average path length:\t\t\t\t%s" % avg_path))
+            #print(green("Average path length:\t\t\t\t%s" % avg_path))
             print(green("Users with path to a Domain Admin:\t\t%s %%"
                          % percentage_users_path_to_da))
             print(green("Machines with path to Domain Admin:\t\t%s %%"

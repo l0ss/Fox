@@ -27,7 +27,7 @@ class UserMetrics(object):
         if enabled:
             query = """
             MATCH (totalUsers:User {domain:UPPER('%s')})
-            WHERE (totalUsers.Enabled = True)
+            WHERE (totalUsers.enabled = True)
             RETURN COUNT(DISTINCT(totalUsers))
             """ % domain            
         else:
@@ -57,7 +57,7 @@ class UserMetrics(object):
         """Identify Domain Admins linked to SPNs."""
         query = """
         MATCH (u:User {domain:'%s'})-[:MemberOf*1..]->(g:Group {name:'DOMAIN ADMINS@%s'})
-        WHERE u.HasSPN = True
+        WHERE u.hasspn = True
         RETURN u.name
         """ % (domain, domain)
 
@@ -73,7 +73,7 @@ class UserMetrics(object):
         """Identifies computers with unconstrained delegation enabled on the given domain."""
         query = """
         MATCH (c:Computer {domain:'%s'})
-        WHERE c.UnconstrainedDelegation = True
+        WHERE c.unconstraineddelegation = True
         RETURN c.name
         """ % domain
 
@@ -91,7 +91,7 @@ class UserMetrics(object):
 
         query = """
         MATCH (u:User {domain:'%s'})
-        RETURN u.name,u.PwdLastSet
+        RETURN u.name,u.pwdlastset
         """ % domain
 
         results = helpers.execute_query(self.neo4j_driver, query)
